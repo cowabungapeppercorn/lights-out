@@ -102,7 +102,7 @@ class Board extends Component {
       // make table board
       <div>
         <h1 className="title"> Lights Out </h1>
-        <p className="direction"> The goal of the game is to switch all the lights off (blue). </p>
+        <p className="direction"> The goal of the game is to switch all the lights off (gray). </p>
         <p className="direction"> Pressing any of the lights will toggle it and the adjacent lights </p>
         {(this.state.hasWon === true) ? <p>You Won</p> : 
         this.state.board.map(

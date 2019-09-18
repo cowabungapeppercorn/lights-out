@@ -101,6 +101,9 @@ class Board extends Component {
       // if the game is won, just show a winning msg & render nothing else
       // make table board
       <div>
+        <h1 className="title"> Lights Out </h1>
+        <p className="direction"> The goal of the game is to switch all the lights off (blue). </p>
+        <p className="direction"> Pressing any of the lights will toggle it and the adjacent lights </p>
         {(this.state.hasWon === true) ? <p>You Won</p> : 
         this.state.board.map(
           (row, rIdx) => <tr> {row.map(

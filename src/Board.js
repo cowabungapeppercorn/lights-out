@@ -87,8 +87,11 @@ class Board extends Component {
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
-    let allVals = board.flat();
-    if (allVals.every(val => val === false)){
+    let trueRows = [];
+    for(let row of board) {
+      trueRows.push(row.every(val => val === false));
+    }
+    if (trueRows.every(row => row === true)){
       hasWon = true;
     }
     this.setState({ board, hasWon });
@@ -104,12 +107,17 @@ class Board extends Component {
         <h1 className="title"> Lights Out </h1>
         <p className="direction"> The goal of the game is to switch all the lights off (gray). </p>
         <p className="direction"> Pressing any of the lights will toggle it and the adjacent lights </p>
-        {(this.state.hasWon === true) ? <p>You Won</p> : 
-        this.state.board.map(
-          (row, rIdx) => <tr> {row.map(
-            (col, cIdx) => <Cell isLit={col} coords={rIdx + "-" + cIdx}
-              flipCellsAroundMe={this.flipCellsAround} />
-          )}</tr>)}
+        <table>
+          <tbody>
+            {(this.state.hasWon === true) ? <p>You Won</p> :
+              this.state.board.map(
+                (row, rIdx) => <tr key={rIdx}>{row.map(
+                  (col, cIdx) => <Cell isLit={col} key={cIdx} 
+                  coords={rIdx + "-" + cIdx}
+                    flipCellsAroundMe={this.flipCellsAround} />
+                )}</tr>)}
+          </tbody>
+        </table>
       </div>
     )
   }
